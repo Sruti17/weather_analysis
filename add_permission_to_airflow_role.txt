@@ -1,0 +1,18 @@
+{
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:s3:::airflow-managed-proj",
+                "arn:aws:s3:::airflow-managed-proj/*",
+                "arn:aws:s3:::aws-glue-assets-637423317099-ap-southeast-1",
+                "arn:aws:s3:::aws-glue-assets-637423317099-ap-southeast-1/*"
+            ],
+            "Action": [
+                "s3:PutObject",
+                "s3:GetObject",
+                "s3:GetObjectVersion",
+                "s3:GetBucketAcl",
+                "s3:GetBucketLocation"
+            ]
+        }
+
+//add this permission in iam role of codebuild
