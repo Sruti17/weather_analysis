@@ -3,8 +3,8 @@
             "Resource": [
                 "arn:aws:s3:::airflow-managed-proj",
                 "arn:aws:s3:::airflow-managed-proj/*",
-                "arn:aws:s3:::aws-glue-assets-637423317099-ap-southeast-1",
-                "arn:aws:s3:::aws-glue-assets-637423317099-ap-southeast-1/*"
+                "arn:aws:s3:::redshift-temp-17",
+                "arn:aws:s3:::redshift-temp-17/*"
             ],
             "Action": [
                 "s3:PutObject",
