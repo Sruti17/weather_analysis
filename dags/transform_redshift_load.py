@@ -16,7 +16,7 @@ dag =DAG('transform_redshift_dag', default_args=default_args, schedule_interval=
 transform_task =GlueJobOperator(
     task_id ='transform_task',
     job_name ="glue_transform_task",
-    script_location = 's3://aws-glue-assets-637423317099-ap-southeast-1/scripts/weather_data_ingestion.py',
+    script_location = 's3://aws-glue-assets-637423317099-ap-southeast-1/scripts/weather_data_ingestion1.py',
     s3_bucket= 's3://aws-glue-assets-637423317099-ap-southeast-1/scripts/',
     aws_conn_id ='aws_default',
     region_name ="ap-southeast-1",
