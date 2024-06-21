@@ -26,7 +26,7 @@ dag = DAG(
 # Set your OpenWeather API endpoint and parameters
 api_endpoint = "https://api.openweathermap.org/data/2.5/forecast"
 api_params = {
-        "q": "Pune,India",
+        "q": "Toronto,Canada",
         "appid": Variable.get("api_key")
     }
 
