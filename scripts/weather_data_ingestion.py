@@ -31,10 +31,10 @@ weather_dyf = glueContext.create_dynamic_frame.from_options(
 changeschema_weather_dyf = ApplyMapping.apply(
     frame=weather_dyf,
     mappings=[
-        ("df", "string", "dt", "string"),
+        ("dt", "string", "dt", "string"),
         ("weather", "string", "weather", "string"),
         ("visibility", "string", "visibility", "string"),
-        ("main.temp", "string", "temp", "string"),
+        ("temp", "string", "temp", "string"),
         ("main.feels_like", "string", "feels_like", "string"),
         ("main.temp_min", "string", "min_temp", "string"),
         ("main.temp_max", "string", "max_temp", "string"),
