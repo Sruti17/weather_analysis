@@ -6,29 +6,29 @@ from awsglue.context import GlueContext
 from awsglue.job import Job
 import datetime
 
-args = getResolvedOptions(sys.argv,["JOB_NAME"])
+args = getResolvedOptions(sys.argv, ["JOB_NAME"])
 sc=SparkContext()
 glueContext=GlueContext(sc)
 spark=glueContext.spark_session
 job=Job(glueContext)
 job.init(args["JOB_NAME"], args)
 
-current_date =datetime.datetime.now().strftime("%Y-%m-%d")
+current_date = datetime.datetime.now().strftime("%Y-%m-%d")
 
 #Script generated for node amazon S3
 weather_dyf=glueContext.create_dynamic_frame.from_options(
-    format_options={"quoteChar":'"',"withHeader":True,"separator":","},
+    format_options={"quoteChar": '"',"withHeader": True,"separator":","},
     connection_type="s3",
     format="csv",
     connection_options={
         "paths":[f"s3://weather-data-analysis-proj/date={current_date}/weather_api_data.csv"],
-        "recurse":True,
+        "recurse": True,
     },
     transformation_ctx="weather_dyf",
 )
 
 #Script generated for node Change Schema
-changeschema_weather_dyf=ApplyMapping.apply(
+changeschema_weather_dyf = ApplyMapping.apply(
     frame=weather_dyf,
     mappings=[
         ("df","string","dt","string"),
@@ -47,9 +47,9 @@ changeschema_weather_dyf=ApplyMapping.apply(
     transformation_ctx="changeschema_weather_dyf",
 )
 
-#Changesschema_weather_dyf.show()
+#Changeschema_weather_dyf.show()
 
-redshift_output=glueContext.write_dynamic_frame.from_options(
+redshift_output = glueContext.write_dynamic_frame.from_options(
     frame=changeschema_weather_dyf,
     connection_type="redshift",
     connection_option={
