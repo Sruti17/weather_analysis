@@ -18,7 +18,7 @@ current_date = datetime.datetime.now().strftime("%Y-%m-%d")
 #Script generated for node amazon S3
 weather_dyf=glueContext.create_dynamic_frame.from_options(
     format_options={"quoteChar": '"',"withHeader": True,"separator":","},
-    connection_type="s3",
+    connection_type ="s3",
     format="csv",
     connection_options={
         "paths":[f"s3://weather-data-analysis-proj/date={current_date}/weather_api_data.csv"],
@@ -51,7 +51,7 @@ changeschema_weather_dyf = ApplyMapping.apply(
 
 redshift_output = glueContext.write_dynamic_frame.from_options(
     frame=changeschema_weather_dyf,
-    connection_type="redshift",
+    connection_type ="redshift",
     connection_options={
         "redshiftTmpDir":"s3://aws-glue-assets-637423317099-ap-southeast-1/temporary/",
         "useConnectionProperties":"true",
