@@ -16,3 +16,4 @@
         }
 
 //add this permission in iam role of codebuild
+//another iam policy is needed
