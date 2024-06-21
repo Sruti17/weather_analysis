@@ -1,5 +1,5 @@
 from airflow import DAG
-from airflow.operators.python import PythonOperator
+from airflow.operators.python_operator import PythonOperator
 from airflow.models import Variable
 from datetime import datetime, timedelta
 import json 
@@ -26,9 +26,9 @@ dag = DAG(
 # Set your OpenWeather API endpoint and parameters
 api_endpoint = "https://api.openweathermap.org/data/2.5/forecast"
 api_params = {
-    "q": "Pune,India",
-    "appid": Variable.get("api_key")
-}
+        "q": "Pune,India",
+        "appid": Variable.get("api_key")
+    }
 
 def extract_openweather_data(**kwargs):
     print("Extracting started")
@@ -43,6 +43,7 @@ def extract_openweather_data(**kwargs):
 extract_api_data = PythonOperator(
     task_id='extract_api_data',
     python_callable=extract_openweather_data,
+    provide_context=True,
     dag=dag,
 )
 
@@ -51,7 +52,7 @@ upload_to_s3 = S3CreateObjectOperator(
     aws_conn_id='aws_default',
     s3_bucket='weather-data-analysis-proj',
     s3_key='date={{ ds }}/weather_api_data.csv',
-    data="{{ ti.xcom_pull(task_ids='extract_api_data', key='final_data') }}",
+    data="{{ ti.xcom_pull(key='final_data') }}",
     dag=dag,
 )
 
