@@ -13,4 +13,7 @@ This project demonstrates a real-time data pipeline that collects weather data u
 - Loads transformed data into Amazon Redshift for analysis.
 - Sends notifications using Amazon SNS upon job success or failure.
 
+**Outcome**
+----------------
 
+The pipeline automatically ingests, processes, and stores weather data for analysis in Redshift. This helps demonstrate a real-world ETL workflow using AWS services and open data.
